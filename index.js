@@ -14,9 +14,9 @@ export default function Main() {
   return (
     // <StoreProvider store={store}>
     <PaperProvider theme={theme}>
-      <SafeAreaProvider style={{flex: 1}}>
-        <App />
-      </SafeAreaProvider>
+      {/* <SafeAreaProvider style={{flex: 1}}> */}
+      <App />
+      {/* </SafeAreaProvider> */}
     </PaperProvider>
     // </StoreProvider>
   );

@@ -1,44 +1,52 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
+import {AppContext} from '../../App';
 import {View, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Cover, H9, H4, Txt2, Button, TextInput} from '../../UI';
-import droneX from '../../asset/DroneX.png';
+import {H4, Txt2, Button, TextInput} from '../../UI';
 import Cloud1 from '../../asset/clouds1.png';
 import droneTxt from '../../asset/DroneTxt.png';
 import {Styles} from './styles';
 
 const Home = () => {
+  const {trackingData, setOrderId} = useContext(AppContext);
+  const [trackId, setTrackingId] = useState('');
   const [searching, setDisplay] = useState(false);
   const {navigate} = useNavigation();
 
   useEffect(() => {
-    if (searching) {
-      setTimeout(() => {
-        navigate('Info');
-      }, 500);
+    if (searching && trackingData) {
+      navigate('Info');
     }
-  }, [searching]);
+  }, [navigate, trackingData, searching]);
 
   return (
     <View style={Styles.container}>
-      <Image
-        source={droneTxt}
-        style={{
-          width: 120,
-          resizeMode: 'contain',
-          position: 'absolute',
-          top: 20,
-          left: 30,
-        }}
-      />
+      <Image source={droneTxt} style={Styles.img} />
       {!searching ? (
         <>
           <View style={{width: '100%'}}>
-            <Txt2>Tracking ID</Txt2>
+            <Txt2
+              style={{
+                color: '#fff',
+              }}>
+              Tracking ID
+            </Txt2>
           </View>
-          <TextInput style={{width: '100%', marginTop: 10, marginBottom: 40}} />
-          <Button secondary onPress={() => setDisplay('searching')}>
-            <Txt2>Find your order</Txt2>
+          <TextInput
+            onChange={value => setTrackingId(value)}
+            style={{width: '100%', marginTop: 10, marginBottom: 40}}
+          />
+          <Button
+            onPress={() => {
+              setDisplay('searching');
+              setOrderId(trackId);
+            }}>
+            <Txt2
+              style={{
+                color: '#fff',
+              }}>
+              Find your order
+            </Txt2>
           </Button>
         </>
       ) : (

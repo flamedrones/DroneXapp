@@ -20,7 +20,7 @@ const fontConfig = {
 };
 
 export const colors = {
-  primary: '#000085',
+  primary: '#5D5FEF',
   secondary: '#ffff',
 };
 

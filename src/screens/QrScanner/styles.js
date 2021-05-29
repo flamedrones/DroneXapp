@@ -9,11 +9,4 @@ export const Styles = StyleSheet.create({
     paddingTop: 120,
     // linear-gradient(180deg, #000000 62.2%, #2F3A5A 100%);
   },
-  img: {
-    width: 120,
-    resizeMode: 'contain',
-    position: 'absolute',
-    top: 20,
-    left: 30,
-  },
 });
